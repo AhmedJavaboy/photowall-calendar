@@ -1,0 +1,154 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background: #fff;
+  height: 100%;
+  font-family: Helvetica, Arial, serif;
+}
+.calender-head{
+  margin: 4rem;
+  padding: 0;
+  list-style: none;
+  font-size: 1.4rem;
+}
+.calender-title{
+  font-size: 48px;
+}
+.arrow-text{
+    text-decoration: line-through;
+    font-size: 28px;
+    color: #A8A8A8;
+}
+.calendar {
+  margin: 4rem;
+  padding: 0;
+  list-style: none;
+  font-size: 1.4rem;
+}
+
+.calendar-day {
+  color: #343434;
+  position: relative;
+  box-sizing: border-box;
+  border: 2px solid #4A90E2;
+  margin: 0px;
+}
+
+.calendar-day:nth-child(7n+1)::before {
+  content: attr(data-week);
+  position: absolute;
+  color: #999;
+}
+
+.calendar-day::after {
+  content: attr(data-weekday);
+  position: absolute;
+  color: #999;
+}
+
+.calendar-day__content {
+  background: #fff;
+  margin: 0px;
+}
+
+.calendar-day--not-month .calendar-day__content {
+  opacity: .5;
+}
+
+.calendar-day--today .calendar-day__content {
+  background-color: #CAE4E6;
+    opacity: 0.3;
+    filter: alpha(opacity=30); /* For IE8 and earlier */
+}
+
+.calendar-day--entry .calendar-day__content {
+    color:#D0021B;
+    }
+
+.calendar-day__number {
+  position: absolute;
+  text-align: center;
+  font-size: 50px;
+}
+.calendar-day__number-weekend{
+  position: absolute;
+  text-align: center;
+  font-size: 50px;
+    color: #D0021B;
+}
+@media screen and (max-width: 40rem) {
+  .calendar-day {
+    margin:  0px;
+  }
+
+  .calendar-day:nth-child(7n+1)::before {
+    left: 0;
+    right: 0;
+    bottom: calc(100% + .5rem);
+    display: block;
+    text-align: center;
+  }
+
+  .calendar-day::after {
+    right: calc(100% + .5rem);
+    top: .5rem;
+  }
+
+  .calendar-day--not-month {
+    display: none;
+  }
+
+  .calendar-day--begin-week {
+    margin-top: 3rem;
+  }
+
+  .calendar-day__content {
+    padding: 0 0 20%;
+  }
+}
+@media screen and (min-width: 40rem) {
+  .calendar {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .calendar-day {
+    flex-basis: calc(14.28571% - 2px);
+    margin: 0px;
+  }
+
+  .calendar-day:nth-child(7n+1)::before {
+    right: calc(100% + .5rem);
+    top: .5rem;
+  }
+
+  .calendar-day::after {
+    display: none;
+  }
+
+  .calendar-day:nth-child(-n+7)::after {
+    display: inline;
+    bottom: calc(100% + .2rem);
+    left: .5rem;
+  }
+
+  .calendar-day--not-month {
+    display: block;
+  }
+
+  .calendar-day--past .calendar-day__number {
+    opacity: .5;
+  }
+
+  .calendar-day__content {
+    padding-bottom: 100%;
+  }
+}
