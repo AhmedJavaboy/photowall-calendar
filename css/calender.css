@@ -103,12 +103,6 @@ ul, ol {
       font-size: 18px; 
   padding:0px ;
 }
-@media (max-width: 450px) {
-  .days {
-    display: none;
-  }
-}
-
 @media (min-width:450px) {
   .month {
     border-left: solid 1px #4A90E2;
@@ -188,41 +182,6 @@ ul, ol {
 .big-text-only{
     display: inline;
 }
-@media (max-width: 450px) {
-    .month .vecka,
-    .month .old-month,
-    .month .new-month{
-        
-    display:none;
-    }
-    
-    .big-text-only{
-        display: none;
-    }
-}
-@media (min-width: 450px) {
-    .month .vecka{
-   font-size: 18px;
-    margin-bottom: 0;
-    border: solid 1px #4A90E2;
-    border-top: none;
-    border-left: none;
-  text-align: center;
-  font-family:  Quicksand-Bold;
-  height: 65px;
-  padding-top: 20px;
-    }
-    .days .vecka {
-   font-size: 18px;
-    margin-bottom: 0;
-    border: solid 1px #4A90E2;
-    border-left: none;
-  text-align: center;
-  font-family:  Quicksand-Bold;
-  height: 65px;
-  padding-top: 20px;
-    }
-} 
 .calender-title{
   font-size: 48px;
 }
@@ -275,6 +234,55 @@ ul, ol {
     }
 
 
+@media (max-width: 450px) {
+  .days {
+    display: none;
+  }
+  .month {
+    border-top: solid 1px #4A90E2;
+  }
+  
+  .month .day{
+    border-top: none;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 450px) {
+    .month .vecka,
+    .month .old-month,
+    .month .new-month{
+        
+    display:none;
+    }
+    
+    .big-text-only{
+        display: none;
+    }
+}
+@media (min-width: 450px) {
+    .month .vecka{
+   font-size: 18px;
+    margin-bottom: 0;
+    border: solid 1px #4A90E2;
+    border-top: none;
+    border-left: none;
+  text-align: center;
+  font-family:  Quicksand-Bold;
+  height: 65px;
+  padding-top: 20px;
+    }
+    .days .vecka {
+   font-size: 18px;
+    margin-bottom: 0;
+    border: solid 1px #4A90E2;
+    border-left: none;
+  text-align: center;
+  font-family:  Quicksand-Bold;
+  height: 65px;
+  padding-top: 20px;
+    }
+} 
 /*
 *   flexbox top
 **/

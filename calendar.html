@@ -19,15 +19,15 @@
 
     <div class="calendar">
         <div class="calender-head container-fluid">
-            <a href="#" class="arrow-text col-xs-4">
+            <a href="#" onclick="prevMonth()" class="arrow-text col-xs-4">
                 <img class="arrow arrow-back" src="img/arrow.svg" />
-               <div class="big-text-only"> June</div>
+               <div class="big-text-only" id="prev"> June</div>
             </a>
-            <h2 class="calendar-title col-xs-4">July 2017</h2>
-            <a href="#" class="arrow-text col-xs-4">
+            <h2 class="calendar-title col-xs-4" id="calendar-title">July 2017</h2>
+            <a href="#" onclick="nextMonth()" class="arrow-text col-xs-4">
                 <div class=" pull-right">
 
-                    <div class="big-text-only"> August</div>
+                    <div class="big-text-only" id="next"> August</div>
                     <img class="arrow" src="img/arrow.svg" />
                 </div>
             </a>
@@ -44,8 +44,8 @@
             <li><div class="day">Saturday </div></li>
             <li><div class="day">Sunday </div></li>
         </ol>
-        <ol class="month july">
-            <li>
+        <ol class="month july" id="calendar_wrapper">
+            <!--<li>
                 <div class="vecka">
                     26
                 </div>
@@ -272,7 +272,7 @@
             </li>
             <li>
                 <div class="day new-month">6</div>
-            </li>
+            </li>-->
         </ol>
     </div>
 
