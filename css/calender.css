@@ -47,10 +47,12 @@ ul, ol {
     padding: 20px;
 }
 .calendar-title {
-	font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display';
+  font-weight: normal;
     font-size: 30px;
   text-align: center;
   display: inline;
+  margin: 0px;
 }
 
 .days,
@@ -328,9 +330,6 @@ ul, ol {
 .prev-arrow{
 }
 
-.calendar-title{
-  text-align: center;
-}
 
 /* --------------------------------*/
 /*       grid system               */

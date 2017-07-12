@@ -11,11 +11,11 @@ let day_no, first_day, days;
 let prev_day_no, prev_first_day, prev_days;
 
 
-function getWeekNumbe(d){
+function getWeekNumbe(d) {
     d = new Date(+d);
-    d.setHours(0,0,0,0);
-    d.setDate(d.getDate()+4-(d.getDay()||7));
-    return Math.ceil((((d-new Date(d.getFullYear(),0,1))/8.64e7)+1)/7);
+    d.setHours(0, 0, 0, 0);
+    d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+    return Math.ceil((((d - new Date(d.getFullYear(), 0, 1)) / 8.64e7) + 1) / 7);
 };
 console.log('The current ISO week number is ' + getWeekNumbe(new Date()));
 
@@ -64,7 +64,7 @@ let emptyday = "<li><div class='day old-month'> </div></li>";
 
 
 function getDayFormated(count, weekday) {
-    let result="";
+    let result = "";
     switch (weekday) {
         case 0:
             result = "<li><div class='day'>" + count + "<div class='day-name'>Monday</div></div></li>";
@@ -87,7 +87,7 @@ function getDayFormated(count, weekday) {
         case 6:
             result = "<li><div class='day day-weekend'>" + count + "<div class='day-name'>Sunday</div></div></li>";
             break;
-        default: 
+        default:
             break;
     }
 
@@ -103,8 +103,8 @@ function createMonth(newselectedMonth, newselectedYear) {
     /*     calendar body     */
     let c;
     // create first row week number
-    let wnum=getWeekNumbe(new Date(newselectedYear, newselectedMonth , 1)); 
-    let weeknumber = "<li><div class='vecka'>"+wnum+"</div></li>";
+    let wnum = getWeekNumbe(new Date(newselectedYear, newselectedMonth, 1));
+    let weeknumber = "<li><div class='vecka'>" + wnum + "</div></li>";
     calendar = weeknumber;
     // create first row perv month days 
     let prevYear, prevMonth;
@@ -130,7 +130,7 @@ function createMonth(newselectedMonth, newselectedYear) {
 
     let count = 1;
     for (; c <= 6; c++) {
-        calendar += getDayFormated(count, c) ;
+        calendar += getDayFormated(count, c);
         count++;
     }
 
@@ -138,8 +138,11 @@ function createMonth(newselectedMonth, newselectedYear) {
     //rest of the date rows
     let r;
     for (r = 3; r <= 7; r++) {
+        if (newselectedYear==0) {
+            wnum=0;
+        }
         wnum++;
-        weeknumber = "<li><div class='vecka'>"+wnum+"</div></li>";
+        weeknumber = "<li><div class='vecka'>" + wnum + "</div></li>";
         // new row
         if (r != 7) {
             loop = 0;
