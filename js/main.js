@@ -7,20 +7,20 @@ let day_name = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 let selectedMonth, selectedYear;
 let today, todayDay, todayMonth, todayYear;
 
-
-function setTodayColor() {
-    // day-today
-}
-
-
-function isCurrentMonth() {
-    if (selectedMonth === todayMonth && selectedYear === todayYear) {
-        setTodayColor();
-        return true;
-    }
-    return false;
-}
 let day_no, first_day, days;
+let prev_day_no, prev_first_day, prev_days;
+
+function prevMonthTo(newselectedMonth, newselectedYear) {
+    let first_date = months[newselectedMonth] + " " + 1 + " " + newselectedYear;
+    //September 1 2014
+    let tmp = new Date(first_date).toDateString();
+    //Mon Sep 01 2014 ...
+    let prev_first_day = tmp.substring(0, 3);    //Mon
+    tmp = new Date(first_date).toDateString();
+    prev_day_no = day_name.indexOf(prev_first_day);   //1
+    prev_days = new Date(newselectedYear, newselectedMonth + 1, 0).getDate();    //30
+    return prev_days;
+}
 function startMonthFromTo(newselectedMonth, newselectedYear) {
     let first_date = months[newselectedMonth] + " " + 1 + " " + newselectedYear;
     //September 1 2014
@@ -36,7 +36,7 @@ function startMonthFromTo(newselectedMonth, newselectedYear) {
 
 function createMonthTitle(newselectedMonth, newselectedYear) {
     document.getElementById('calendar-title').innerHTML = months[newselectedMonth] + " " + newselectedYear;
-    if (newselectedMonth != 0 || newselectedMonth != 11) {
+    if (newselectedMonth != 0 && newselectedMonth != 11) {
         document.getElementById('next').innerHTML = months[newselectedMonth + 1];
         document.getElementById('prev').innerHTML = months[newselectedMonth - 1];
     }
@@ -66,11 +66,23 @@ function createMonth(newselectedMonth, newselectedYear) {
     let weeknumber = "<li><div class='vecka'> </div></li>";
     calendar = weeknumber;
     // create first row perv month days 
+    let prevYear, prevMonth;
+
+    if (newselectedMonth != 0) {
+        prevMonth = newselectedMonth-1;
+        prevYear = newselectedYear;
+    }
+    else {
+        prevMonth = 11;
+        prevYear = newselectedYear-1;
+    }
+    let prev_month_start = prevMonthTo(prevMonth, prevYear) - day_no +1;
     for (c = 0; c <= 6; c++) {
         if (c == day_no) {
             break;
         }
-        calendar += emptyday;
+        calendar += "<li><div class='day old-month'>" + prev_month_start + " </div></li>";
+        prev_month_start++;
     }
 
     // create first row days 
@@ -105,7 +117,7 @@ function createMonth(newselectedMonth, newselectedYear) {
 
     }
 
-    debugger;
+    //debugger;
     count = 1;
     if (loop != 7) {
         c = loop;
@@ -128,19 +140,33 @@ function createMonth(newselectedMonth, newselectedYear) {
     }
     /*-----------------------*/
     document.getElementById('calendar_wrapper').innerHTML = calendar;
-    //console.log(calendar);
+
 }
 
 let newselectedYear, newselectedMonth;
 
 function nextMonth() {
-    newselectedMonth = newselectedMonth + 1;
+
+    if (newselectedMonth == 11) {
+        newselectedMonth = 0;
+        newselectedYear = newselectedYear + 1;
+    }
+    else {
+        newselectedMonth = newselectedMonth + 1;
+    }
     createMonth(newselectedMonth, newselectedYear);
     console.log(newselectedMonth);
 }
 
 function prevMonth() {
-    newselectedMonth = newselectedMonth - 1;
+
+    if (newselectedMonth == 0) {
+        newselectedMonth = 11;
+        newselectedYear = newselectedYear - 1;
+    }
+    else {
+        newselectedMonth = newselectedMonth - 1;
+    }
     createMonth(newselectedMonth, newselectedYear);
     console.log(newselectedMonth);
 
