@@ -47,7 +47,7 @@ ul, ol {
     padding: 20px;
 }
 .calendar-title {
-	font-family: "Playfair Display";
+	font-family: 'Playfair Display', serif;
     font-size: 30px;
   text-align: center;
   display: inline;
@@ -316,3 +316,73 @@ ul, ol {
   font-size: 3em;
   text-align: center;
 }
+
+/*******************************/
+.next-arrow{
+  float: right;
+  text-align: right;
+  /*position: relative;
+*/
+}
+
+.prev-arrow{
+}
+
+.calendar-title{
+  text-align: center;
+}
+
+/* --------------------------------*/
+/*       grid system               */
+
+.row, 
+.column {
+    box-sizing: border-box;
+}
+
+.row:before,
+.row:after {
+    content: " ";
+    display: table;
+}
+
+.row:after {
+    clear: both;
+}
+
+.column {
+    position: relative;
+    float: left;
+    display: block;
+}
+
+.column + .column {
+    margin-left: 1.6%;
+}
+
+
+
+.column-3 {
+    width: 23.8%;
+}
+
+.column-6 {
+    width: 49.2%;
+}
+
+
+@media only screen and (max-width: 550px) {
+     
+    .column-3 {
+    width: 10%;
+    }
+   
+    .column-6 {
+    width: 80%;
+    }
+    .column + .column {
+        margin-left: 0;
+    }
+}
+
+/*-------------------------------------*/
