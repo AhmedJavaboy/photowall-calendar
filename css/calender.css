@@ -71,7 +71,7 @@ ul, ol {
   /*regular*/
 
 }
-@media (min-width: 450px) {
+@media only screen and (min-width: 450px) {
     .days li .day,
     .month li .day {
         width: 13.5%;
@@ -105,7 +105,7 @@ ul, ol {
       font-size: 18px; 
   padding:0px ;
 }
-@media (min-width:450px) {
+@media only screen and (min-width:450px) {
   .month {
     border-left: solid 1px #4A90E2;
   }
@@ -147,7 +147,7 @@ ul, ol {
 .month .day-weekend {
     color: #D0021B;
   }
-@media (min-width: 450px) {
+@media only screen and (min-width: 450px) {
   .month .day {
   font-size: 50px;
     margin-bottom: 0;
@@ -228,7 +228,7 @@ ul, ol {
         font-size: 16px;
         display:inline;
 }
-@media (min-width: 450px) {
+@media only screen and (min-width: 450px) {
     .day-name{
         display:none;
 
@@ -236,7 +236,7 @@ ul, ol {
     }
 
 
-@media (max-width: 450px) {
+@media only screen and (max-width: 450px) {
   .days {
     display: none;
   }
@@ -250,7 +250,7 @@ ul, ol {
   }
 }
 
-@media (max-width: 450px) {
+@media only screen and (max-width: 450px) {
     .month .vecka,
     .month .old-month,
     .month .new-month{
@@ -262,7 +262,7 @@ ul, ol {
         display: none;
     }
 }
-@media (min-width: 450px) {
+@media only screen and (min-width: 450px) {
     .month .vecka{
    font-size: 18px;
     margin-bottom: 0;
@@ -385,3 +385,12 @@ ul, ol {
 }
 
 /*-------------------------------------*/
+
+.month  li .new-month-day-weekend {
+    color: rgba(208,2,27,.3);
+  }
+ #calendar_wrapper{
+  touch-action: manipulation;
+ }
+
+ 

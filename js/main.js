@@ -1,3 +1,15 @@
+$(document).on("pagecreate","#pageone",function(){
+  /*$("p").on("swipe",function(){
+    $(this).hide();
+  });*/
+    $("div.calendar").on("swipeleft", nextMonth);
+    $("div.calendar").on("swiperight", prevMonth);
+                       
+});
+$.mobile.autoInitializePage = false;
+
+
+let eventday;
 // these are the days of the week for each month, in order
 let cal_days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -67,7 +79,7 @@ function getDayFormated(count, weekday) {
     let result = "";
     switch (weekday) {
         case 0:
-            result = "<li><div class='day'>" + count + "<div class='day-name'>Monday</div></div></li>";
+            result = "<li><a href='#'><div class='day'>" + count + "<div class='day-name'>Monday</div></div></a></li>";
             break;
         case 1:
             result = "<li><div class='day'>" + count + "<div class='day-name'>Tuesday</div></div></li>";
@@ -138,8 +150,8 @@ function createMonth(newselectedMonth, newselectedYear) {
     //rest of the date rows
     let r;
     for (r = 3; r <= 7; r++) {
-        if (newselectedYear==0) {
-            wnum=0;
+        if (newselectedYear == 0) {
+            wnum = 0;
         }
         wnum++;
         weeknumber = "<li><div class='vecka'>" + wnum + "</div></li>";
@@ -172,7 +184,12 @@ function createMonth(newselectedMonth, newselectedYear) {
         calendar += weeknumber;
     }
     for (; c <= 6; c++) {
-        calendar += "<li><div class='day new-month'>" + count + "</div></li>";
+        if (c == 6) {
+            calendar += "<li><div class='day new-month new-month-day-weekend'>" + count + "</div></li>";
+        }
+        else {
+            calendar += "<li><div class='day new-month'>" + count + "</div></li>";
+        }
         count++;
     }
 
@@ -180,7 +197,12 @@ function createMonth(newselectedMonth, newselectedYear) {
     if (r != 8) {
         calendar += weeknumber;
         for (c = 0; c <= 6; c++) {
-            calendar += "<li><div class='day new-month'>" + count + "</div></li>";
+            if (c == 6) {
+                calendar += "<li><div class='day new-month new-month-day-weekend'>" + count + "</div></li>";
+            }
+            else {
+                calendar += "<li><div class='day new-month'>" + count + "</div></li>";
+            }
             count++;
         }
     }
@@ -201,7 +223,7 @@ function nextMonth() {
         newselectedMonth = newselectedMonth + 1;
     }
     createMonth(newselectedMonth, newselectedYear);
-    console.log(newselectedMonth);
+    //console.log(newselectedMonth);
 }
 
 function prevMonth() {
@@ -214,10 +236,9 @@ function prevMonth() {
         newselectedMonth = newselectedMonth - 1;
     }
     createMonth(newselectedMonth, newselectedYear);
-    console.log(newselectedMonth);
+    //console.log(newselectedMonth);
 
 }
-//var calendar = get_calendar(day_no, days);
 
 function setToday() {
     today = new Date();
@@ -227,11 +248,63 @@ function setToday() {
     todayYear = today.getFullYear();
     selectedYear = todayYear;
 }
-// On Load of the window
+// On Load of the window.
+/*window.addEventListener("swipeleft", nextMonth, { passive: true });
+window.addEventListener("swiperight", prevMonth, { passive: true });
+*/
 window.onload = function () {
 
     setToday();
     createMonth(selectedMonth, selectedYear);
     newselectedYear = selectedYear;
     newselectedMonth = selectedMonth;
+
 }
+$(function () {
+    // Bind the swipeleftHandler callback function to the swipe event on div.box
+    $("div.calendar").on("swipeleft", nextMonth);
+    $("div.calendar").on("swiperight", prevMonth);
+
+    // Callback function references the event target and adds the 'swipeleft' class to it
+
+    function nextMonth(event) {
+        event.preventDefault();
+
+        if (newselectedMonth == 11) {
+            newselectedMonth = 0;
+            newselectedYear = newselectedYear + 1;
+        }
+        else {
+            newselectedMonth = newselectedMonth + 1;
+        }
+        createMonth(newselectedMonth, newselectedYear);
+        console.log("one swipeleft");
+    }
+
+    function prevMonth(event) {
+        event.preventDefault();
+        if (newselectedMonth == 0) {
+            newselectedMonth = 11;
+            newselectedYear = newselectedYear - 1;
+        }
+        else {
+            newselectedMonth = newselectedMonth - 1;
+        }
+        createMonth(newselectedMonth, newselectedYear);
+        console.log("one swiperight");
+        //console.log(swiperight);
+
+    }
+});
+/*
+$(document).on("pagecreate", "#pageone", function () {
+    $("#calendar_wrapper").on("swipeleft", function () {
+        //alert("You swiped swipeleft!");
+        nextMonth();
+    });
+    $("#calendar_wrapper").on("swiperight", function () {
+        //alert("You swiped right!");
+        prevMonth();
+    });
+});
+*/
